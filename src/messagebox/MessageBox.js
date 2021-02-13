@@ -5,6 +5,8 @@ import style from "./messageBox.module.css"
 import { AttachFile, Send } from "../image/icons/icons"
 import MessageCard from "./messacgeCard/messageCard"
 import MessageBoxHeader from "./messageBoxHeader/messageBoxHeader"
+import socketIOClient from "socket.io-client";
+const ENDPOINT = "http://localhost:5000";
 
 export default function MessageBox(props) {
     const [message, setMessage] = useState("");
@@ -13,7 +15,15 @@ export default function MessageBox(props) {
     const currentUser = useSelector((s) => s.user);
     const messagesContainerRef = useRef()
 
+
+    const handleKeyUp = (e) => {
+      if(message && e.keyCode===13){
+        handleSend()
+      }
+    }
+
   const handleSend = () => {
+    setMessage("")
     axios
       .post(`${process.env.REACT_APP_API}/sendMessage`, {
         sender: currentUser.userInfo.userId,
@@ -55,7 +65,7 @@ export default function MessageBox(props) {
                 })
             }
             setMessages(data)
-            messagesContainerRef.current.scrollTo(0, messagesContainerRef.current.scrollHeight)
+            messagesContainerRef.current && messagesContainerRef.current.scrollTo(0, messagesContainerRef.current.scrollHeight)
         })
         .catch((err) => {
           console.log("err", err);
@@ -63,15 +73,35 @@ export default function MessageBox(props) {
   }, [selectedChannel, currentUser, props.allChannels]);
 
 
+  useEffect(() => {
+    const socket = socketIOClient(ENDPOINT);
+    socket.on("FromAPI", data => {
+      if(data.ids.includes(selectedChannel) && data.ids.includes(currentUser.userInfo.userId)){
+        let dataclone = data.messages.map(item=>{
+            let sender = props.allChannels.find(x=>x.userId===item.sender)
+            let senderName = sender ? sender.username : currentUser.userInfo.username
+            let senderAvatar = sender ? sender.avatar : currentUser.userInfo.avatar
+            return {
+                ...item,
+                senderName,
+                senderAvatar
+            }
+        })
+        setMessages(dataclone);
+      }
+    });
+  }, [selectedChannel]);
+
 
   return (
     <div className={style.container}>
         <MessageBoxHeader selectedChannel={selectedChannel} />
       <div ref={messagesContainerRef} className={style.messagesContainer}>
-        {messages.length
+        {messages && messages.length 
           ? messages.map((message) => {
               return (
                   <MessageCard
+                    key={message.time}
                     message = {message}
                   />
               );
@@ -83,7 +113,8 @@ export default function MessageBox(props) {
             <AttachFile />
         </button>
         <input
-        disabled={!selectedChannel}
+          onKeyUp={handleKeyUp}
+          disabled={!selectedChannel}
           className={style.input}
           value={message}
           placeholder="So let’s share"

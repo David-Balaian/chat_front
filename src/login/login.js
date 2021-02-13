@@ -11,12 +11,19 @@ function App() {
   const dispatch = useDispatch()
   const [userName, setUserName] = useState("user_1")
 
+
+  const handleKeyUp = (e) => {
+    if(userName && e.keyCode===13){
+      login()
+    }
+  }
+
+
   const login = () => {
     Axios.post(`${process.env.REACT_APP_API}/authenticate`, {
       userName,
     })
     .then((res)=>{
-      console.log(res)
       dispatch(LOG_IN(res.data))
       history.push({
         pathname: "/profile",
@@ -32,7 +39,7 @@ function App() {
       <div className={style.inputsCont} >
         <div className={style.largeText} >Getting Started</div>
         <div className={style.smallText} >Just enter your username, click connect button and start</div>
-        <input className={style.input} value = {userName} onChange={(e)=>{setUserName(e.target.value)}} />
+        <input onKeyUp={handleKeyUp} className={style.input} value = {userName} onChange={(e)=>{setUserName(e.target.value)}} />
         <button disabled={!userName} className={style.loginButton} onClick={login} >Connect</button>
       </div>
     </div>

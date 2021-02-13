@@ -30,7 +30,6 @@ export default function Profile() {
         })
         .then((res)=>{
             setAllChannels(res.data)
-            console.log('allchannels', res.data)
             dispatch(SELECT_CHANNEL(res.data[0].userId))
         })
         .catch((err)=>{

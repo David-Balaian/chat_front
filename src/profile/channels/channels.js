@@ -18,7 +18,7 @@ export default function Channels(props) {
             </div>
             <div className={style.channelsContainer} >
                 {props.allChannels.map((channel)=>{
-                    return <ChannelCard channel={channel} />
+                    return <ChannelCard key={channel.userId} channel={channel} />
                 })}
             </div>
         </div>

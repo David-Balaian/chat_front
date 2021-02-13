@@ -5,7 +5,7 @@ import { Info } from "../../image/icons/icons"
 
 export default function MessageBoxHeader({selectedChannel}) {
 
-    const [channelHeader, setChannelHeader] = useState({})
+    const [channelHeader, setChannelHeader] = useState(null)
 
     useEffect(() => {
         axios
@@ -25,11 +25,11 @@ export default function MessageBoxHeader({selectedChannel}) {
     return (
         <div className={style.container}>
             <span className={style.headerAvatar} >
-                <img src={`${process.env.REACT_APP_API}${channelHeader.avatar}`} alt="channel" />
+                {channelHeader && <img src={`${process.env.REACT_APP_API}${channelHeader.avatar}`} alt="channel" />}
             </span>
             <div className={style.headerEtc}>
                 <span className={style.name}>
-                    {channelHeader.username}
+                    {channelHeader && channelHeader.username}
                 </span>
             </div>
             <span className={style.infoIcon} >

@@ -5,8 +5,8 @@ import App from './App';
 import reducer from "./redux/reducers/reducer"
 import { createStore } from 'redux';
 import { Provider } from "react-redux"
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-let store = createStore(reducer, composeEnhancers())
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+let store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
