@@ -90,6 +90,9 @@ export default function MessageBox(props) {
         setMessages(dataclone);
       }
     });
+    return ()=>{
+      socket.disconnect()
+    }
   }, [selectedChannel]);
 
 

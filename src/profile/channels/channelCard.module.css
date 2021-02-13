@@ -43,9 +43,10 @@
 }
 .cardetc{
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-around;
-    /* align-items: center; */
+    padding: 0px 20px 0px 0px;
 }
 
 .channelName{
@@ -70,6 +71,7 @@
     line-height: 10px;
     letter-spacing: 0px;
     text-align: left;
+    position: relative;
 
 }
 
@@ -84,4 +86,19 @@
     top: 0;
     right: 0;
 
+}
+
+.unread{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: blue;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
 }
