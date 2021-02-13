@@ -1,0 +1,49 @@
+.container{
+    width: 280px;
+    height: 100%;
+    overflow: hidden;
+    border-right: 1px solid #DFE0EB;
+    
+}
+
+.searchBar{
+    height: 63px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.searchInput{
+    height: 36px;
+    width: 204px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    padding: 7px 34px;
+    box-sizing: border-box;
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0px;
+    background: url("../../image/icons/Search\ \(icon\).svg") no-repeat rgba(215, 216, 227, 0.25) center left 14px;
+
+}
+
+.searchMessage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #4F6AFF;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.channelsContainer{
+    overflow: overlay;
+    overflow-x: hidden;
+    height: calc(100% - 63px);
+}

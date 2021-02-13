@@ -1,0 +1,49 @@
+.container{
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    margin: 24px 0px
+}
+
+.messageContainer{
+    width: 100%;
+}
+
+.name{
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #4F6AFF;
+    cursor: pointer;
+
+}
+
+.time{
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 10px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #676A7C;
+    margin-left: 8px;
+
+}
+
+
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid lightblue;
+    margin: 0px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}

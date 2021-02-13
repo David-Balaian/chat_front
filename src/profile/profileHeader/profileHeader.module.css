@@ -1,0 +1,37 @@
+.header{
+    background: #172268;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+.userCont{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+}
+.user{
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: right;
+    color: #fff;
+}
+.avatar{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #00CC99;
+    margin: 0px 12px;
+    color: #fff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
